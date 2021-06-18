@@ -28,16 +28,15 @@ myFunction();
     
 For example, `summation(4)` should return 10 because 1+2+3+4 is 10. Note, you may use a for loop for this function if you wish */
 
-function summation(number) {
-  const sum = counter.reduce(function(accumulator,item){
-    return accumulator + item;
-  },0);
 
-  let count = 0;
-  function counter(){
-  return count++;
-}
+  function summation(number) {
+    var total = 0;
+      for(var i = 1; i <= number; i++){
+        total += i;
+      }
+      return total;
   }
+  
  
 
 // 🦁🦁🦁 Topic 2: ADVANCED Array Methods 🦁🦁🦁
@@ -65,9 +64,10 @@ const zooAnimals = [
   function animalNames(array){
     const displayNames = [];
     zooAnimals.forEach(function(item){
-    return displayNames.push(item.animal_name, item.scientific_name)
+    return displayNames.push(`name: ${item.animal_name}, scientific: ${item.scientific_name}`)
 });
-return animalNames;
+return displayNames;
+
   }
   
 
@@ -92,7 +92,7 @@ return animalNames;
 
   function lowPopulationAnimals(array){
   const lowPop = zooAnimals.filter(function(item){
-    return item.population > 5;
+    return item.population < 5;
   });
     return lowPop;
 }
@@ -104,8 +104,8 @@ return animalNames;
   */
 
   function USApop(array){
-    const totalPop = zooAnimals.reduce(function(accumulator,item){
-      return accumulator + item;
+    const totalPop = array.reduce(function(accumulator,item){
+      return accumulator + item.population;
     },0)
     
     return totalPop;
@@ -140,8 +140,8 @@ function multiply(a,b){
 
  // 🦁🦁🦁 Use greeting to accept a first and last name and return "Hello {first-name} {last-name}, nice to meet you!" 🦁🦁🦁
   
-function greeting(){
-   return 
+function greeting(first,last){
+   return `Hello ${first} ${last}, nice to meet you!`
   }
   
   // 🦁🦁🦁 Step 3: Check your work by un-commenting the following calls to consume(): 🦁🦁🦁 
@@ -162,10 +162,10 @@ function greeting(){
 /* 🐴🐴🐴 Step 1: Base Constructor 🐴🐴🐴
  Use the constructor function named CuboidMaker to accept properties for length, width, and height which can be initialized as an object
 */
-function CuboidMaker(length,width,height){
-  this.length = length;
-  this.width = width;
-  this.height = height;
+function CuboidMaker(attributes){
+  this.length = attributes.length;
+  this.width = attributes.width;
+  this.height = attributes.height;
 }
 
 
@@ -184,7 +184,9 @@ CuboidMaker.prototype.volume = function(){
   Formula for cuboid surface area of a cube: 
   2 * (length * width + length * height + width * height)  */
 
-
+  CuboidMaker.prototype.surfaceArea = function() {
+    return 2 * (this.length * this.width + this.length * this.height + this.width * this.height);
+  }
 
 
 
@@ -192,7 +194,13 @@ CuboidMaker.prototype.volume = function(){
   Create an object called cuboid that uses the new keyword to use our CuboidMaker constructor
   Add properties and values of length: 4, width: 5, and height: 5 to cuboid. */
 
-
+  const cuboid = new CuboidMaker({
+    length: 4, 
+    width: 5, 
+    height: 5
+  });
+    
+  
 
 
 
@@ -205,9 +213,19 @@ CuboidMaker.prototype.volume = function(){
 // 🦄🦄🦄 Topic 4: Classes 🦄🦄🦄 //
 //🦄🦄🦄 1. Take your prototypes from above and refactor into class syntax. Please rename your class CuboidMakerTwo and your object cuboidTwo 🦄🦄🦄
 class CuboidMakerTwo{
-
+  constructor(attributes){
+    this.length = attributes.length;
+    this.width = attributes.width;
+    this.height = attributes.height;
+}
+volume(){
+  return this.length * this.width * this.height;
 }
 
+surfaceArea(){
+return 2 * (this.length * this.width + this.length * this.height + this.width * this.height);
+}
+}
 
 //🦄🦄🦄 Test your volume and surfaceArea methods by uncommenting the logs below: 🦄🦄🦄
 // console.log(cuboidTwo.volume()); // 100
