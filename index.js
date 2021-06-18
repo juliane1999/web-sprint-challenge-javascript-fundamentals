@@ -28,9 +28,15 @@ myFunction();
     
 For example, `summation(4)` should return 10 because 1+2+3+4 is 10. Note, you may use a for loop for this function if you wish */
 
-function summation(/*Your Code Here*/) {
-  /*Your Code Here*/
+function summation(number) {
+  const sum = counter.reduce(function(accumulator,item){
+    return accumulator + item;
+  },0);
 
+  let count = 0;
+  function counter(){
+  return count++;
+}
   }
  
 
@@ -61,6 +67,7 @@ const zooAnimals = [
     zooAnimals.forEach(function(item){
     return displayNames.push(item.animal_name, item.scientific_name)
 });
+return animalNames;
   }
   
 
@@ -74,6 +81,7 @@ const zooAnimals = [
     const newName = zooAnimals.map(function(item){
       return item.animal_name.toLowerCase();                                       
     });  
+    return newName;
   }
   
   
@@ -83,11 +91,11 @@ const zooAnimals = [
   */
 
   function lowPopulationAnimals(array){
-    const lowPop = zooAnimals.filter(function(item){
-      return item.population > 5;
-    });
-  }
-  
+  const lowPop = zooAnimals.filter(function(item){
+    return item.population > 5;
+  });
+    return lowPop;
+}
 
   /* 🦁🦁🦁 Request 4: .reduce() 🦁🦁🦁
   The zoo needs to know their total animal population across the United States. 
@@ -99,8 +107,9 @@ const zooAnimals = [
     const totalPop = zooAnimals.reduce(function(accumulator,item){
       return accumulator + item;
     },0)
-  }     
-  
+    
+    return totalPop;
+}
   
   
   // 🦁🦁🦁 Callbacks 🦁🦁🦁  
